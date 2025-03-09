@@ -1,0 +1,436 @@
+/* Reset and base styles */
+/* Legend styling */
+
+.legend {
+  background-color: white;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  margin-right: 8px;
+}
+
+.workflow-color {
+  background-color: #f3e5f5;
+  border: 1px solid #ce93d8;
+}
+
+.action-color {
+  background-color: #e3f2fd;
+  border: 1px solid #90caf9;
+}
+
+.entity-color {
+  background-color: #e8f5e9;
+  border: 1px solid #a5d6a7;
+}
+
+.role-color {
+  background-color: #fff3e0;
+  border: 1px solid #ffcc80;
+}
+
+.data-color {
+  background-color: #ffebee;
+  border: 1px solid #ef9a9a;
+}
+
+/* Add style for the re-layout button */
+button {
+  margin-right: 5px;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+/* App container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header */
+.app-header {
+  background-color: #4a3f9f;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Main content */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Side panel */
+.side-panel {
+  width: 350px;
+  padding: 1rem;
+  background-color: #f1f3f5;
+  border-right: 1px solid #dee2e6;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.file-upload h2,
+.text-input h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #4a3f9f;
+}
+
+/* File upload */
+.file-upload input[type="file"] {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+/* Text input */
+.text-input textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #4a3f9f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #3a3086;
+}
+
+button:disabled {
+  background-color: #ced4da;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.error-message {
+  padding: 0.75rem;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+}
+
+/* Diagram panel */
+.diagram-panel {
+  flex: 1;
+  position: relative;
+  background-color: #fcfcff;
+}
+
+/* Flow instructions */
+.flow-instructions {
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+}
+
+.flow-instructions ul {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+/* Node styles */
+.node {
+  padding: 10px;
+  border-radius: 5px;
+  width: 220px;
+  font-size: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.node-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.node-header {
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 5px;
+}
+
+.node-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.node-type {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.node-body {
+  font-size: 12px;
+}
+
+.node-description {
+  font-style: italic;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.node-inputs, 
+.node-outputs, 
+.node-attributes {
+  margin-bottom: 6px;
+}
+
+.node ul {
+  margin: 4px 0;
+  padding-left: 20px;
+}
+
+.node .label {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+/* Node types */
+.action-node {
+  background-color: #e3f2fd;
+  border: 1px solid #90caf9;
+}
+
+.entity-node {
+  background-color: #e8f5e9;
+  border: 1px solid #a5d6a7;
+}
+
+.role-node {
+  background-color: #fff3e0;
+  border: 1px solid #ffcc80;
+}
+
+.workflow-node {
+  background-color: #f3e5f5;
+  border: 1px solid #ce93d8;
+}
+
+.data-node {
+  background-color: #ffebee;
+  border: 1px solid #ef9a9a;
+}
+
+/* Node properties form */
+.node-properties-form {
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.node-properties-form h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #4a3f9f;
+}
+
+.form-group {
+  margin-bottom: 0.75rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.form-group textarea {
+  height: 5rem;
+  resize: vertical;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+  
+  .side-panel {
+    width: 100%;
+    max-height: 40vh;
+  }
+}
+
+/* === CRITICAL REACTFLOW EDGE STYLES === */
+/* Make React Flow edges visible */
+.react-flow__edge {
+  z-index: 10 !important;
+  pointer-events: all !important;
+}
+
+.react-flow__edge-path {
+  stroke-width: 2px !important;
+  stroke: #4a3f9f !important;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #ff6b6b !important;
+  stroke-width: 3px !important;
+}
+
+/* Edge labels */
+.react-flow__edge-text {
+  font-size: 12px !important;
+  fill: #333 !important;
+  background-color: white !important;
+  padding: 2px 4px !important;
+  border-radius: 3px !important;
+}
+
+/* Data flow edges (different color) */
+.react-flow__edge.dataFlow .react-flow__edge-path {
+  stroke: #ff6b6b !important;
+  stroke-dasharray: 5,5 !important;
+}
+
+.react-flow__edge.default .react-flow__edge-path {
+  stroke: #4a3f9f !important;
+}
+
+/* Make handles more visible and interactive */
+.react-flow__handle {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: #4a3f9f !important;
+  border: 2px solid white !important;
+  border-radius: 50% !important;
+  z-index: 20 !important; /* Make sure handles are above edges */
+  cursor: crosshair !important;
+}
+
+.react-flow__handle:hover {
+  width: 14px !important;
+  height: 14px !important;
+  transform: translate(-2px, -2px);
+  background-color: #ff6b6b !important;
+}
+
+.react-flow__handle-left {
+  left: -6px !important;
+}
+
+.react-flow__handle-right {
+  right: -6px !important;
+}
+
+/* Connection line */
+.react-flow__connection-path {
+  stroke: #4a3f9f !important;
+  stroke-width: 2px !important;
+  stroke-dasharray: 5,5 !important;
+}
+
+/* Improve pane interaction */
+.react-flow__pane {
+  cursor: grab !important;
+}
+
+.react-flow__pane.dragging {
+  cursor: grabbing !important;
+}
+
+/* Minimap enhancements */
+.react-flow__minimap {
+  border: 1px solid #dee2e6 !important;
+  border-radius: 4px !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Controls enhancements */
+.react-flow__controls {
+  border: 1px solid #dee2e6 !important;
+  border-radius: 4px !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.react-flow__controls-button {
+  border: none !important;
+  background-color: transparent !important;
+  color: #4a3f9f !important;
+}
+
+.react-flow__controls-button:hover {
+  background-color: #f1f3f5 !important;
+}
+
+/* Ensure node connection points are visible */
+.action-node,
+.entity-node,
+.role-node,
+.workflow-node,
+.data-node {
+  position: relative !important;
+  z-index: 5 !important;
+}
