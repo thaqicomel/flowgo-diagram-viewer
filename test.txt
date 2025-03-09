@@ -1,0 +1,149 @@
+// Role Definitions
+role Developer {
+  description: "A human role responsible for writing code and implementing features.";
+  type: Human;
+}
+
+role DevOpsEngineer {
+  description: "A human role responsible for managing CI/CD pipelines and infrastructure.";
+  type: Human;
+}
+
+role QAEngineer {
+  description: "A human role responsible for testing and quality assurance.";
+  type: Human;
+}
+
+// Action Definitions
+action CodeCommit by role Developer (codeRepo: Repository) {
+  description: "Developer commits code changes to the repository.";
+  outputs: [codeChanges];
+}
+
+action RunAutomatedTests by AI (codeChanges: CodeChanges) {
+  description: "Automatically run unit and integration tests on code changes.";
+  outputs: [testResults];
+}
+
+action CodeQualityCheck by AI (codeChanges: CodeChanges) {
+  description: "Run static code analysis and quality checks.";
+  outputs: [qualityReport];
+}
+
+action BuildDockerImage by role DevOpsEngineer (codeChanges: CodeChanges, buildConfig: Configuration) {
+  description: "Build Docker image with the latest code changes.";
+  outputs: [dockerImage];
+}
+
+action DeployToBlueEnvironment by AI (dockerImage: Image, k8sConfig: KubernetesConfig) {
+  description: "Deploy the Docker image to the Blue environment.";
+  outputs: [blueDeployment];
+}
+
+action DeployToGreenEnvironment by AI (dockerImage: Image, k8sConfig: KubernetesConfig) {
+  description: "Deploy the Docker image to the Green environment.";
+  outputs: [greenDeployment];
+}
+
+action RunLoadTests by role QAEngineer (deployment: Deployment, testScripts: TestScripts) {
+  description: "Execute load tests against the deployed environment.";
+  outputs: [loadTestResults];
+}
+
+action SwitchTraffic by role DevOpsEngineer (sourceEnv: Environment, targetEnv: Environment) {
+  description: "Switch traffic from source environment to target environment.";
+  outputs: [trafficSwitchStatus];
+}
+
+action MonitorDeployment by AI (deployment: Deployment, metrics: MetricsConfig) {
+  description: "Monitor the deployment for any issues or anomalies.";
+  outputs: [monitoringReport];
+}
+
+action RollbackDeployment by role DevOpsEngineer (deployment: Deployment) {
+  description: "Roll back to previous deployment if issues are detected.";
+  outputs: [rollbackStatus];
+}
+
+// Entity Definitions
+entity Repository {
+  url: String;
+  branch: String;
+  commitId: String;
+}
+
+entity CodeChanges {
+  files: List<String>;
+  commitMessage: String;
+  author: String;
+}
+
+entity Configuration {
+  dockerfilePath: String;
+  imageName: String;
+  imageTag: String;
+}
+
+entity KubernetesConfig {
+  namespace: String;
+  deploymentName: String;
+  replicaCount: Number;
+}
+
+entity Image {
+  registry: String;
+  repository: String;
+  tag: String;
+  size: String;
+}
+
+entity Deployment {
+  environment: String;
+  status: String;
+  version: String;
+  deploymentTime: String;
+}
+
+entity TestScripts {
+  path: String;
+  duration: Number;
+  concurrentUsers: Number;
+}
+
+entity Environment {
+  name: String;
+  url: String;
+  status: String;
+}
+
+entity MetricsConfig {
+  cpuThreshold: Number;
+  memoryThreshold: Number;
+  responseTimeThreshold: Number;
+}
+
+// Workflow Definition
+workflow BlueGreenDeployment {
+  // Initialize deployment parameters
+  CodeCommit(codeRepo: repo);
+  RunAutomatedTests(codeChanges: codeChanges);
+  CodeQualityCheck(codeChanges: codeChanges);
+  
+  // If tests and quality checks pass, proceed with deployment
+  BuildDockerImage(codeChanges: codeChanges, buildConfig: config);
+  
+  // Deploy to inactive environment (assuming Blue is inactive)
+  DeployToBlueEnvironment(dockerImage: dockerImage, k8sConfig: k8sConfig);
+  
+  // Run load tests on Blue environment
+  RunLoadTests(deployment: blueDeployment, testScripts: testScripts);
+  
+  // If tests pass, switch traffic
+  SwitchTraffic(sourceEnv: greenEnvironment, targetEnv: blueEnvironment);
+  
+  // Monitor the new deployment
+  MonitorDeployment(deployment: blueDeployment, metrics: metricsConfig);
+  
+  // Rollback if necessary (not always executed)
+  // RollbackDeployment(deployment: blueDeployment);
+}
