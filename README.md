@@ -97,3 +97,6 @@ npm start
 
 ### Sample DSL
 A sample Flowgo DSL script is included in the project documentation. Use this to test the application's capabilities.
+
+### File Upload
+You may use the test.txt
