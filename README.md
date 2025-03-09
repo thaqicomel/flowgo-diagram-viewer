@@ -56,6 +56,7 @@ npm start
 4. Open the application
 - Navigate to `http://localhost:3000`
 - Upload a Flowgo DSL file to generate a diagram
+- You may use the test.txt
 
 ## Known Limitations and Improvement Areas
 
